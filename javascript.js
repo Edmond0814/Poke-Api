@@ -75,6 +75,7 @@ function displayMoves(moves){
 
 async function main(){
     let name = getPokemonName()
+    document.querySelector('title').textContent=name.toLocaleUpperCase()
     let {url:pokemonURL}= await getPokemons(name)
     let pokemonInfo = await getPokemonInfo(pokemonURL)
     displayPokemonInfo(pokemonInfo)

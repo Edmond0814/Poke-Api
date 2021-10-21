@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+.pokedex{
+    background-color: red;
+}
+
 .content{
     width: 90%;
     max-width: 1300px;
@@ -13,19 +17,38 @@
     row-gap: 2rem;
 }
 
-img{
+.background{
+    background-image: url(https://wallpaperaccess.com/full/24975.jpg);
+    background-size: 100vw 120vh;
+}
+
+.pokemon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 25px
+}
+
+.images{
     width: 200px;
     height: 200px;
 }
 
+.image{
+    border-radius: 30px;
+    margin: -1rem auto;
+    background-color:transparent;
+    transform: scale(1.2);
+}
+
 .id{
-    font-size: 25px;
-    margin: 0.5rem 0;
+    font-size: 30px;
+    margin: 0.5rem 1rem;
 }
 
 .name{
     font-size: 30px;
-    margin: 0.5rem 0;
+    margin: 0.5rem 1rem;
 }
 
 .box{
@@ -41,4 +64,80 @@ img{
 .box:hover{
     transform: scale(1.1);
     cursor: pointer;
+}
+
+.info{
+    margin: 0 auto;
+    margin-top: -25px;
+    text-align: center;
+}
+
+.abilitybox{
+    font-size: 30px;
+    background-color: teal;
+    padding: 1rem 0;
+    border-radius: 25px;
+    margin: 1rem 2rem;
+    width: 250px;
+}
+
+.movesbox{
+    font-size: 30px;
+    background-color: teal;
+    padding: 1rem 0;
+    border-radius: 25px;
+    margin: 1rem 2rem;
+    width: 400px;
+}
+
+.abilities{
+    line-height: 4rem;
+    margin: 0.5rem 0.5rem;
+    text-align: left;
+}
+
+.moves{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 3rem;
+    text-align: center;
+    margin: 0.5rem auto;
+    justify-content: space-around;
+}
+
+.idname{
+    display: flex;
+    align-items: center;
+}
+
+.skills{
+    width: 90vw;
+    display: flex; 
+    justify-content: space-around;
+    max-width: 1000px;
+}
+
+.size{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+}
+
+@media (max-width:1000px){
+    .content{
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+
+@media (max-width:775px){
+    .content{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media (max-width:500px){
+    .content{
+        grid-template-columns: 1fr
+    }
 }

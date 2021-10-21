@@ -40,9 +40,8 @@ async function getPokemonInfo(data){
     for (x in data){
         let response = await fetch(data[x].url,{mode:"cors"})
         let pokemon = await response.json()
-        let {name, abilities,moves,height,weight}=await pokemon
-        let zerofilled = ('00'+ await pokemon.id).slice(-3)
-        let obj = {name,abilities,moves,height,weight,id:zerofilled}
+        let {name,id, abilities,moves,height,weight}=await pokemon
+        let obj = {name,abilities,moves,height,weight,id}
         info.push(obj)
     }
     return info
@@ -50,7 +49,9 @@ async function getPokemonInfo(data){
 
 function pokemonImages(id,boxes){
     boxes.forEach(function(box,index){
-        image.src=`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${id[index]}.png`
+        num=id.map(a=>('00'+a).slice(-3))
+        image.src=`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${num[index]}.png`
+        image.classList.add('images')
         box.appendChild(image.cloneNode())   
     })
     return;
@@ -58,9 +59,9 @@ function pokemonImages(id,boxes){
 
 async function pokemonInfo(info,boxes){
     boxes.forEach(function(box,index){
-        box.setAttribute("value",info[index].id)
+        box.setAttribute("value",info[index].name)
         box.appendChild(pokeId.cloneNode())
-        box.querySelector('.id').textContent = '#'+info[index].id
+        box.querySelector('.id').textContent = '#'+('00'+info[index].id).slice(-3)
         box.appendChild(para.cloneNode())
         box.querySelector('.name').textContent = info[index].name
     })
@@ -71,10 +72,12 @@ async function main(){
     displayPokemons(pokemonData)
 }
 
+main()
+
 content.addEventListener('click',function(event){
     if(event.target.parentElement.classList=="box"){
         let value = event.target.parentNode.getAttribute("value")
-        window.location.href="pokemonpage.html"
+        window.location.href=`pokemonpage.html?name=${value}`
     }
 })
 
